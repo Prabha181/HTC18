@@ -4,20 +4,21 @@ import { motion } from "framer-motion";
 
 const TeamSection = () => {
   const teamMembers = [
-    {
-      name: "NEERAJ MAHINDER VORA",
-      role: "Managing Director",
-      qualification: "Graduate",
-    },
+    
     {
       name: "TANU VORA",
       role: "Director",
-      qualification: "Graduate",
+      // qualification: "Graduate",
+    },
+    {
+      name: "NEERAJ MAHINDER VORA",
+      role: "Managing Director",
+      // qualification: "Graduate",
     },
     {
       name: "ROMILA VORA",
       role: "Director",
-      qualification: "Graduate",
+      // qualification: "Graduate",
     },
   ];
 
@@ -72,9 +73,9 @@ const TeamSection = () => {
                 <p className="font-montserrat text-xs sm:text-sm text-[#C9661E] uppercase mb-1 tracking-wider">
                   {member.role}
                 </p>
-                <p className="font-montserrat text-[11px] sm:text-xs text-[#645958]">
+                {/* <p className="font-montserrat text-[11px] sm:text-xs text-[#645958]">
                   {member.qualification}
-                </p>
+                </p> */}
               </div>
 
               <motion.div

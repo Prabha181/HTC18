@@ -144,7 +144,7 @@ export default function Footer() {
               <img
                 src="/images/image.png"
                 alt="HTC18 Logo"
-                className="w-[120px] sm:w-[150px] h-[50px] sm:h-[70px] object-center"
+                className="sm:w-[150px] h-[50px] sm:h-[70px] object-center "
               />
             </motion.div>
 

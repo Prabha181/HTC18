@@ -28,16 +28,16 @@ export default function Hero() {
     };
   }, []);
 
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      setMousePosition({
-        x: (e.clientX / window.innerWidth - 0.5) * 20,
-        y: (e.clientY / window.innerHeight - 0.5) * 20
-      });
-    };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
+  // useEffect(() => {
+  //   const handleMouseMove = (e) => {
+  //     setMousePosition({
+  //       x: (e.clientX / window.innerWidth - 0.5) * 20,
+  //       y: (e.clientY / window.innerHeight - 0.5) * 20
+  //     });
+  //   };
+  //   window.addEventListener("mousemove", handleMouseMove);
+  //   return () => window.removeEventListener("mousemove", handleMouseMove);
+  // }, []);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -211,7 +211,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: -20 }}
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="inline-flex items-center gap-2 bg-[#C9661E]/20 border border-[#C9661E]/30 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full mb-4 sm:mb-6 backdrop-blur-sm"
+              className= "inline-flex items-center gap-2 bg-[#C9661E]/20 border border-[#C9661E]/30 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full mt-12 mb-6 sm:mb-6 backdrop-blur-sm"
             >
               <motion.span
                 animate={{ rotate: 360 }}
@@ -350,7 +350,7 @@ export default function Hero() {
             }}
           >
             <motion.div 
-              className="relative w-64 h-80 sm:w-72 sm:h-[22rem] md:w-80 md:h-96 lg:w-96 lg:h-[28rem] overflow-hidden rounded-2xl shadow-2xl mx-auto"
+              className="relative w-64 h-80 sm:w-72 sm:h-[22rem] md:w-80 md:h-96 lg:w-96 lg:h-[28rem] overflow-hidden rounded-2xl shadow-2xl mx-auto mb-10"
               whileHover={{ scale: 1.05, rotateY: 5, rotateX: 2 }}
               transition={{ duration: 0.5 }}
             >
@@ -440,8 +440,8 @@ export default function Hero() {
       </motion.div>
 
       {/* Enhanced scrolling indicator */}
-      <motion.div
-        className="absolute bottom-6 sm:bottom-10 left-1/2 transform -translate-x-1/2 cursor-pointer z-20"
+      {/* <motion.div
+        className="absolute bottom-6 sm:bottom-10 left-1/2 transform -translate-x-1/2 cursor-pointer z-20 mt-20"
         animate={{ y: [0, 12, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
         whileHover={{ scale: 1.3 }}
@@ -470,7 +470,7 @@ export default function Hero() {
         >
           SCROLL
         </motion.p>
-      </motion.div>
+      </motion.div> */}
     </section>
   );
 }
