@@ -91,7 +91,7 @@ export default function ElegantHomePage() {
               className="absolute left-1/2 transform -translate-x-1/2 w-auto max-w-[200px] md:max-w-xs px-2 flex justify-center"
             >
               <div
-                className={`font-serif text-lg sm:text-xl md:text-2xl font-medium text-center truncate ${scrolled ? "text-[#22160c]" : "text-White"
+                className={`font-serif text-lg sm:text-xl md:text-2xl font-medium text-center truncate ${scrolled ? "text-[#22160c]" : "text-[#f3e1d3]"
                   }`}
               >
                 HTC18 ENTERPRISES
@@ -111,7 +111,7 @@ export default function ElegantHomePage() {
                 >
                   <motion.a
                     href={`#${item.toLowerCase().replace(" ", "-")}`}
-                    className={`font-sans text-xs md:text-sm tracking-wider whitespace-nowrap inline-block ${scrolled ? "text-[#22160C]" : "text-[#C9661E]"
+                    className={`font-sans text-xs md:text-sm tracking-wider whitespace-nowrap inline-block ${scrolled ? "text-[#C9661E]" : "text-[#C9661E]"
                       }`}
                     whileHover={{ scale: 1.05, y: -2, color: "#C9661E" }}
                     transition={{ type: "spring", stiffness: 300, damping: 15 }}

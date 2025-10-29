@@ -1,7 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Facebook, Instagram, Linkedin, Mail, Phone, MapPin, ArrowRight, Sparkles } from "lucide-react";
+import {
+  Facebook,
+  Instagram,
+  Linkedin,
+  Mail,
+  Phone,
+  MapPin,
+  ArrowRight,
+  Sparkles,
+} from "lucide-react";
 
 export default function Footer() {
   const fadeUp = {
@@ -30,13 +39,17 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative overflow-hidden bg-gradient-to-br from-[#0A0908] via-[#0E0C0A] to-[#1a1410]">
+    // ✅ Added id="contact" and scroll-mt-[120px]
+    <footer
+      id="contact"
+      className="relative overflow-hidden bg-gradient-to-br from-[#0A0908] via-[#0E0C0A] to-[#1a1410] scroll-mt-[120px]"
+    >
       {/* Animated Background Elements */}
       <motion.div
         animate={{
           x: [0, 30, 0],
           y: [0, -40, 0],
-          scale: [1, 1.1, 1]
+          scale: [1, 1.1, 1],
         }}
         transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
         className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#C9661E]/20 blur-[200px] rounded-full"
@@ -45,7 +58,7 @@ export default function Footer() {
         animate={{
           x: [0, -40, 0],
           y: [0, 30, 0],
-          scale: [1, 1.15, 1]
+          scale: [1, 1.15, 1],
         }}
         transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 2 }}
         className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#F3E1D3]/10 blur-[220px] rounded-full"
@@ -73,13 +86,12 @@ export default function Footer() {
       ))}
 
       <div className="relative z-10 max-w-[1440px] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20">
-
         {/* Header Section */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="text-center pt-24 pb-16 md:pt-28 md:pb-20 lg:pt-32 lg:pb-24"
+          className="text-center pt-24 pb-16 md:pt-20 md:pb-20 lg:pt-32 lg:pb-24"
         >
           <motion.div
             custom={0}
@@ -126,7 +138,6 @@ export default function Footer() {
 
         {/* Main Content Grid - Equal 3 Columns */}
         <div className="grid grid-cols-1 md:grid-cols-[1.2fr_1fr_1fr] lg:grid-cols-[1.5fr_1fr_1fr] gap-12 md:gap-10 lg:gap-16 xl:gap-20 pb-16 md:pb-20">
-
           {/* Brand Section - Column 1 */}
           <motion.div
             custom={0}
@@ -204,7 +215,11 @@ export default function Footer() {
                   whileHover={{ x: 8 }}
                   className="group"
                 >
-                  <a href="#" className="flex items-center gap-3 text-[#CFC6BE] transition-colors duration-300 group-hover:text-[#C9661E] font-montserrat text-base">
+                  {/* 👇 Changed href to match your page sections */}
+                  <a
+                    href={`#${item.toLowerCase().replace(" ", "-")}`}
+                    className="flex items-center gap-3 text-[#CFC6BE] transition-colors duration-300 group-hover:text-[#C9661E] font-montserrat text-base"
+                  >
                     <motion.div
                       initial={{ width: 0 }}
                       whileHover={{ width: 20 }}
@@ -229,7 +244,6 @@ export default function Footer() {
               Get in Touch
             </h3>
             <div className="space-y-5">
-
               <motion.div
                 whileHover={{ x: 5, backgroundColor: "rgba(201, 102, 30, 0.05)" }}
                 className="flex items-start gap-4 p-5 rounded-xl transition-all duration-300"
@@ -286,7 +300,6 @@ export default function Footer() {
                   </a>
                 </div>
               </motion.div>
-
             </div>
           </motion.div>
         </div>
@@ -297,7 +310,7 @@ export default function Footer() {
           whileInView={{ scaleX: 1, opacity: 1 }}
           transition={{ duration: 1.2, ease: "easeInOut" }}
           viewport={{ once: true }}
-          className="relative mb-12 h-[2px]"
+          className="relative mb-8 h-[2px]"
         >
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#C9661E] to-transparent" />
           <motion.div
@@ -307,9 +320,7 @@ export default function Footer() {
           />
         </motion.div>
 
-        {/* Bottom Section */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8 pb-12 md:pb-16">
-
+        <div className="flex flex-col md:flex-row items-center justify-between gap-8 pb-6 md:pb-8">
           {/* Social Links */}
           <motion.div
             initial="hidden"
@@ -324,22 +335,48 @@ export default function Footer() {
                 custom={index}
                 variants={scaleIn}
                 whileHover={{
-                  scale: 1.15,
-                  rotate: [0, -8, 8, 0],
-                  boxShadow: `0px 10px 30px ${color}40`,
+                  scale: 1.1,
+                  y: -4,
+                  boxShadow: `0px 6px 20px ${color}40`,
                 }}
-                whileTap={{ scale: 0.9 }}
-                transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                className="relative w-12 h-12 md:w-14 md:h-14 flex items-center justify-center rounded-2xl bg-gradient-to-br from-[#1a1410] to-[#0E0C0A] border border-[#C9661E]/40 text-[#C9661E] overflow-hidden group"
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 250, damping: 15 }}
+                className="relative w-12 h-12 md:w-14 md:h-14 flex items-center justify-center 
+                 rounded-2xl bg-gradient-to-br from-[#1a1410] to-[#0E0C0A] 
+                 border border-[#C9661E]/40 text-[#C9661E] overflow-hidden group"
                 aria-label={label}
               >
+                {/* Subtle Glow Circle */}
                 <motion.div
-                  initial={{ scale: 0 }}
-                  whileHover={{ scale: 1 }}
-                  transition={{ duration: 0.3 }}
-                  className="absolute inset-0 bg-[#C9661E] opacity-0 group-hover:opacity-100"
+                  className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100"
+                  style={{
+                    background: `radial-gradient(circle at center, ${color}25 0%, transparent 70%)`,
+                  }}
+                  transition={{ duration: 0.4 }}
                 />
-                <Icon className="w-5 h-5 md:w-6 md:h-6 relative z-10 group-hover:text-[#0E0C0A] transition-colors duration-300" />
+
+                {/* Icon with smooth brightness on hover */}
+                <motion.div
+                  whileHover={{
+                    filter: "brightness(1.4) drop-shadow(0 0 6px rgba(201,102,30,0.5))",
+                  }}
+                  transition={{ duration: 0.3 }}
+                  className="relative z-10"
+                >
+                  <Icon className="w-5 h-5 md:w-6 md:h-6 transition-all duration-300" />
+                </motion.div>
+
+                {/* Gradient Border Animation */}
+                <motion.div
+                  className="absolute inset-0 rounded-2xl pointer-events-none"
+                  initial={{ opacity: 0 }}
+                  whileHover={{ opacity: 1 }}
+                  transition={{ duration: 0.5 }}
+                  style={{
+                    background: `conic-gradient(from 180deg, transparent, ${color}80, transparent)`,
+                    maskImage: "linear-gradient(black, black)",
+                  }}
+                />
               </motion.a>
             ))}
           </motion.div>
@@ -353,8 +390,17 @@ export default function Footer() {
             className="text-sm md:text-base text-[#A5A1A0] tracking-wide text-center md:text-right font-montserrat"
           >
             © {new Date().getFullYear()}{" "}
-            <span className="text-[#C9661E] font-semibold">HTC18</span>
-            {" "}— Crafted with passion & sustainability
+            <motion.span
+              whileHover={{
+                color: "#C9661E",
+                textShadow: "0 0 10px rgba(201, 102, 30, 0.8)",
+              }}
+              transition={{ duration: 0.3 }}
+              className="font-semibold"
+            >
+              HTC18
+            </motion.span>{" "}
+            — Crafted with passion & sustainability
           </motion.p>
         </div>
       </div>
