@@ -109,7 +109,6 @@ const Products = () => {
       className="py-20 sm:py-24 bg-[#FAF7F5] relative overflow-hidden"
       ref={sectionRef}
     >
-      {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -180,7 +179,6 @@ const Products = () => {
             </p>
           </motion.div>
 
-          {/* Filters */}
           <motion.div
             className="flex flex-wrap gap-3 justify-start sm:justify-center md:justify-end"
             initial={{ opacity: 0, x: 50 }}
