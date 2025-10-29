@@ -58,7 +58,7 @@ const Products = () => {
       name: "Wine & Packaging Bags",
       category: "Premium",
       image:
-        "https://i.pinimg.com/1200x/94/2f/77/942f776535ed22583212e4a493f93f23.jpg",
+        "https://i.pinimg.com/736x/b7/dd/16/b7dd16e9ae1a63457becbb567aabb095.jpg",
       description: "Specialty bags for beverages and premium packaging",
       color: "#8B4513",
     },

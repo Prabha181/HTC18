@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { motion } from "framer-motion";
 import {
   Facebook,
@@ -9,16 +8,10 @@ import {
   Mail,
   Phone,
   MapPin,
-  ArrowRight,
   Sparkles,
 } from "lucide-react";
 
 export default function Footer() {
-  // Newsletter state management
-  const [email, setEmail] = useState('');
-  const [isSubscribing, setIsSubscribing] = useState(false);
-  const [message, setMessage] = useState('');
-
   const fadeUp = {
     hidden: { opacity: 0, y: 40 },
     visible: (i = 0) => ({
@@ -44,32 +37,6 @@ export default function Footer() {
     { Icon: Linkedin, label: "LinkedIn", color: "#0A66C2" },
   ];
 
-  // Newsletter subscription handler
-  const handleSubscribe = async () => {
-    if (!email || !email.includes('@')) {
-      setMessage('Please enter a valid email address');
-      return;
-    }
-
-    setIsSubscribing(true);
-    setMessage('');
-
-    try {
-      // Your API call here
-      // await fetch('/api/subscribe', { method: 'POST', body: JSON.stringify({ email }) });
-      
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      setMessage('Successfully subscribed!');
-      setEmail('');
-    } catch (error) {
-      setMessage('Failed to subscribe. Please try again.');
-    } finally {
-      setIsSubscribing(false);
-    }
-  };
-
   return (
     <footer
       id="contact"
@@ -77,21 +44,18 @@ export default function Footer() {
     >
       {/* Animated Background Elements */}
       <motion.div
-        animate={{
-          x: [0, 30, 0],
-          y: [0, -40, 0],
-          scale: [1, 1.1, 1],
-        }}
+        animate={{ x: [0, 30, 0], y: [0, -40, 0], scale: [1, 1.1, 1] }}
         transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
         className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#C9661E]/20 blur-[200px] rounded-full"
       />
       <motion.div
-        animate={{
-          x: [0, -40, 0],
-          y: [0, 30, 0],
-          scale: [1, 1.15, 1],
+        animate={{ x: [0, -40, 0], y: [0, 30, 0], scale: [1, 1.15, 1] }}
+        transition={{
+          duration: 15,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 2,
         }}
-        transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 2 }}
         className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#F3E1D3]/10 blur-[220px] rounded-full"
       />
 
@@ -99,15 +63,8 @@ export default function Footer() {
       {[...Array(6)].map((_, i) => (
         <motion.div
           key={i}
-          animate={{
-            y: [0, -30, 0],
-            opacity: [0.3, 0.6, 0.3],
-          }}
-          transition={{
-            duration: 4 + i,
-            repeat: Infinity,
-            delay: i * 0.8,
-          }}
+          animate={{ y: [0, -30, 0], opacity: [0.3, 0.6, 0.3] }}
+          transition={{ duration: 4 + i, repeat: Infinity, delay: i * 0.8 }}
           className="absolute w-2 h-2 bg-[#C9661E]/40 rounded-full"
           style={{
             left: `${15 + i * 15}%`,
@@ -167,9 +124,9 @@ export default function Footer() {
           </motion.p>
         </motion.div>
 
-        {/* Main Content Grid - Equal 3 Columns */}
+        {/* Main Content Grid */}
         <div className="grid grid-cols-1 md:grid-cols-[1.2fr_1fr_1fr] lg:grid-cols-[1.5fr_1fr_1fr] gap-12 md:gap-10 lg:gap-16 xl:gap-20 pb-16 md:pb-20">
-          {/* Brand Section - Column 1 */}
+          {/* Brand Section */}
           <motion.div
             custom={0}
             initial="hidden"
@@ -195,7 +152,7 @@ export default function Footer() {
               craftsmanship to create products that matter for both people and planet.
             </p>
 
-            {/* Newsletter Section with State Management */}
+            {/* Replaced Newsletter Section */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -203,42 +160,19 @@ export default function Footer() {
               transition={{ delay: 0.3 }}
             >
               <h4 className="font-montserrat text-sm font-semibold text-[#F3E1D3] mb-4 uppercase tracking-wider">
-                Newsletter
+                Our Commitment
               </h4>
-              <div className="relative">
-                <input
-                  type="email"
-                  placeholder="Your email address"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  onKeyPress={(e) => {
-                    if (e.key === 'Enter') handleSubscribe();
-                  }}
-                  className="w-full px-5 py-4 pr-32 bg-[#1a1410]/60 border border-[#C9661E]/30 rounded-xl text-[#F3E1D3] placeholder:text-[#6b5d54] focus:outline-none focus:border-[#C9661E] transition-all duration-300"
-                />
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={handleSubscribe}
-                  disabled={isSubscribing}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#C9661E] px-5 py-2.5 rounded-lg text-[#0E0C0A] font-semibold text-sm flex items-center gap-1.5 hover:bg-[#A85419] transition-colors disabled:opacity-50"
-                >
-                  {isSubscribing ? 'Subscribing...' : 'Subscribe'}
-                  <ArrowRight className="w-4 h-4" />
-                </motion.button>
-              </div>
-              {message && (
-                <p className="font-montserrat text-xs text-[#C9661E] mt-2">
-                  {message}
-                </p>
-              )}
-              <p className="font-montserrat text-xs text-[#8A7F78] mt-3">
-                Get updates on sustainability and new products
+              <p className="font-montserrat text-sm text-[#C9661E] mb-3">
+                We are dedicated to creating sustainable digital experiences that inspire and empower.
+              </p>
+              <p className="font-montserrat text-xs text-[#8A7F78] leading-relaxed">
+                From design to deployment, every step we take focuses on innovation, quality, and responsibility.
+                Join us as we continue to shape a greener, more creative digital future together.
               </p>
             </motion.div>
           </motion.div>
 
-          {/* Quick Links - Column 2 */}
+          {/* Quick Links */}
           <motion.div
             custom={1}
             initial="hidden"
@@ -274,7 +208,7 @@ export default function Footer() {
             </ul>
           </motion.div>
 
-          {/* Contact Info - Column 3 */}
+          {/* Contact Info */}
           <motion.div
             custom={2}
             initial="hidden"
@@ -388,7 +322,6 @@ export default function Footer() {
                  border border-[#C9661E]/40 text-[#C9661E] overflow-hidden group"
                 aria-label={label}
               >
-                {/* Subtle Glow Circle */}
                 <motion.div
                   className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100"
                   style={{
@@ -396,8 +329,6 @@ export default function Footer() {
                   }}
                   transition={{ duration: 0.4 }}
                 />
-
-                {/* Icon with smooth brightness on hover */}
                 <motion.div
                   whileHover={{
                     filter: "brightness(1.4) drop-shadow(0 0 6px rgba(201,102,30,0.5))",
@@ -407,8 +338,6 @@ export default function Footer() {
                 >
                   <Icon className="w-5 h-5 md:w-6 md:h-6 transition-all duration-300" />
                 </motion.div>
-
-                {/* Gradient Border Animation */}
                 <motion.div
                   className="absolute inset-0 rounded-2xl pointer-events-none"
                   initial={{ opacity: 0 }}
