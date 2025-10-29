@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import {
   Facebook,
@@ -13,6 +14,11 @@ import {
 } from "lucide-react";
 
 export default function Footer() {
+  // Newsletter state management
+  const [email, setEmail] = useState('');
+  const [isSubscribing, setIsSubscribing] = useState(false);
+  const [message, setMessage] = useState('');
+
   const fadeUp = {
     hidden: { opacity: 0, y: 40 },
     visible: (i = 0) => ({
@@ -38,8 +44,33 @@ export default function Footer() {
     { Icon: Linkedin, label: "LinkedIn", color: "#0A66C2" },
   ];
 
+  // Newsletter subscription handler
+  const handleSubscribe = async () => {
+    if (!email || !email.includes('@')) {
+      setMessage('Please enter a valid email address');
+      return;
+    }
+
+    setIsSubscribing(true);
+    setMessage('');
+
+    try {
+      // Your API call here
+      // await fetch('/api/subscribe', { method: 'POST', body: JSON.stringify({ email }) });
+      
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      setMessage('Successfully subscribed!');
+      setEmail('');
+    } catch (error) {
+      setMessage('Failed to subscribe. Please try again.');
+    } finally {
+      setIsSubscribing(false);
+    }
+  };
+
   return (
-    // ✅ Added id="contact" and scroll-mt-[120px]
     <footer
       id="contact"
       className="relative overflow-hidden bg-gradient-to-br from-[#0A0908] via-[#0E0C0A] to-[#1a1410] scroll-mt-[120px]"
@@ -164,7 +195,7 @@ export default function Footer() {
               craftsmanship to create products that matter for both people and planet.
             </p>
 
-            {/* Newsletter Section */}
+            {/* Newsletter Section with State Management */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -178,17 +209,29 @@ export default function Footer() {
                 <input
                   type="email"
                   placeholder="Your email address"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  onKeyPress={(e) => {
+                    if (e.key === 'Enter') handleSubscribe();
+                  }}
                   className="w-full px-5 py-4 pr-32 bg-[#1a1410]/60 border border-[#C9661E]/30 rounded-xl text-[#F3E1D3] placeholder:text-[#6b5d54] focus:outline-none focus:border-[#C9661E] transition-all duration-300"
                 />
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#C9661E] px-5 py-2.5 rounded-lg text-[#0E0C0A] font-semibold text-sm flex items-center gap-1.5 hover:bg-[#A85419] transition-colors"
+                  onClick={handleSubscribe}
+                  disabled={isSubscribing}
+                  className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#C9661E] px-5 py-2.5 rounded-lg text-[#0E0C0A] font-semibold text-sm flex items-center gap-1.5 hover:bg-[#A85419] transition-colors disabled:opacity-50"
                 >
-                  Subscribe
+                  {isSubscribing ? 'Subscribing...' : 'Subscribe'}
                   <ArrowRight className="w-4 h-4" />
                 </motion.button>
               </div>
+              {message && (
+                <p className="font-montserrat text-xs text-[#C9661E] mt-2">
+                  {message}
+                </p>
+              )}
               <p className="font-montserrat text-xs text-[#8A7F78] mt-3">
                 Get updates on sustainability and new products
               </p>
@@ -215,7 +258,6 @@ export default function Footer() {
                   whileHover={{ x: 8 }}
                   className="group"
                 >
-                  {/* 👇 Changed href to match your page sections */}
                   <a
                     href={`#${item.toLowerCase().replace(" ", "-")}`}
                     className="flex items-center gap-3 text-[#CFC6BE] transition-colors duration-300 group-hover:text-[#C9661E] font-montserrat text-base"
